@@ -11,4 +11,8 @@ router.route('/').get(getThoughts).post(createThought);
 
 router.route('/:thoughtId').get(getSingleThought);
 
+router.route('/:thoughtId').put(updateThought);
+
+router.route()
+
 module.exports = router;
