@@ -1,4 +1,5 @@
 const express = require('express');
+const routes = require('./routes');
 const { Reaction } = require('./Models');
 const { Thought } = require('./Models');
 const { User } = require('./Models');
