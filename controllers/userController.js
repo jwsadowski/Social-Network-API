@@ -19,5 +19,15 @@ module.exports = {
         User.create(req.body)
         .then((dbUserData) => res.json(dbUserData))
         .catch((err) => res.status(500).json(err));
+    },
+    updateUser(req, res) {
+        User.findOneAndUpdate({ _id: req.params.userId})
+        .then((user) => res.json(user))
+        .catch((err) => res.status(500).json(err));
+    },
+    deleteUser(req, res) {
+        User.destroy({ _id: req.params.userId})
+        .then((user) => res.json(user))
+        .catch((err) => res.status(500).json(err));
     }
 };
