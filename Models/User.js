@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
    } 
 });
 
-userSchema.path('email').validate(value => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)
+userSchema.path('email').validate(value => match: [/.+@.+\..+/, 'Must match an email address!'])
 
 userSchema.virtuals('friendcount')
     .get(function() {
