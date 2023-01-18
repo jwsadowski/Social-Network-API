@@ -12,8 +12,14 @@ const userSchema = new mongoose.Schema({
         required: true, 
         unique: true,
     },
-    thoughts: { [ _id: 'Thought']},
-    friends: { [ _id: 'User']}
+    thoughts: { 
+        type: [ _id ],
+        ref: 'Thought'
+    },
+    friends: {
+        type: [ _id ],
+        ref: 'User'
+    }
 }, {
    toJSON: {
     virtuals: true,
@@ -22,7 +28,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.path('email').validate(value => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)
 
-UserSchema.virtuals('friendcount')
+userSchema.virtuals('friendcount')
     .get(function() {
         return `${this.[friends.length]}`
     })
