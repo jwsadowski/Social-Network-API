@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const reactionSchema = new mongoose.Schema({
+const ReactionSchema = new mongoose.Schema({
     reactionId: { 
         type: mongoose.Schema.Types.ObjectId, 
         default: new mongoose.Schema.Types.ObjectId
@@ -17,9 +17,13 @@ const reactionSchema = new mongoose.Schema({
         type: Date, 
         default: Date.now 
     }
+}, {
+    toJSON: {
+        virtuals: true,
+    }
 })
 
-reactionSchema.virtuals('reactioncontent')
+ReactionSchema.virtuals('reactioncontent')
     .get(function() {
         return `${this.reactionId} ${this.reactionBody}`
     })
@@ -27,3 +31,5 @@ reactionSchema.virtuals('reactioncontent')
         const [reactionId, reactionBody] = value.split(' ')
         this.set({ reactionId, reactionBody })
     })   
+
+module.exports = { ReactionSchema };   

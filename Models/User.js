@@ -33,7 +33,8 @@ userSchema.virtuals('friendcount')
         return `${this.[friends.length]}`
     })
     .set(function(value) {
-        
+        const [friends.length] = value.split(' ')
+        this.set([ friends.length ])
     })
 
 const User = mongoose.model('User', userSchema)
