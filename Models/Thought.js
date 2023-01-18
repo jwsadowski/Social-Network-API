@@ -19,7 +19,7 @@ ThoughtSchema.virtuals('reactioncount')
         return `${this.[reactions.length]}`
     })
     .set(function(value) {
-
+        
     })
 
 const Thought = mongoose.model('Thought', thoughtSchema)
