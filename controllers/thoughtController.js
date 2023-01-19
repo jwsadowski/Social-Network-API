@@ -36,4 +36,9 @@ module.exports = {
         .then((dbThoughtData) => res.json(dbThoughtData))
         .catch((err) => res.status(500).json(err));
     },
+    deleteReaction(req, res) {
+        Thought.findByIdAndDelete(req.params.id), { $pull: {reactions: req.body} }
+        .then((dbThoughtData) => res.json(dbThoughtData))
+        .catch((err) => res.status(500).json(err));
+    }
 };
