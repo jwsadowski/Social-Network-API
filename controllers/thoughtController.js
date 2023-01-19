@@ -22,6 +22,15 @@ module.exports = {
         .catch((err) => res.status(500).json
         (err));
     },
+    updateThought(req, res) {
+        Thought.findOneByIdAndUpdate({ _id: req.params.thoughtId})
+        .then((thought) => 
+        !thought
+            ? res.status(404).json({ message: "No thought found with that ID"})
+            : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err))
+    },
     createReaction(req, res) {
         Thought.findByIdAndUpdate(req.params.id, { $push: {reactions: req.body} })
         .then((dbThoughtData) => res.json(dbThoughtData))
