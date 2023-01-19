@@ -35,5 +35,5 @@ module.exports = {
         Thought.findByIdAndUpdate(req.params.id, { $push: {reactions: req.body} })
         .then((dbThoughtData) => res.json(dbThoughtData))
         .catch((err) => res.status(500).json(err));
-    }
+    },
 };
