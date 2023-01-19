@@ -1,6 +1,7 @@
 const { ObjectId } = require('bson');
 const mongoose = require('mongoose');
 const { monitorEventLoopDelay } = require('perf_hooks');
+const ReactionSchema = require('./Reaction.js')
 
 const thoughtSchema = new mongoose.Schema({
     thoughtText: { 
@@ -15,14 +16,14 @@ const thoughtSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
-    reactions: [reactionSchema]
+    reactions: [ReactionSchema]
 }, {
     toJSON: {
         virtuals: true,
     }
 });
 
-ThoughtSchema.virtual('reactioncount')
+thoughtSchema.virtual('reactioncount')
     .get(function() {
         return this.reactions.length
     })

@@ -21,7 +21,7 @@ module.exports = {
         .then((dbThoughtData) => res.json(dbThoughtData))
         .catch((err) => res.status(500).json
         (err));
-    }
+    },
     createReaction(req, res) {
         Thought.findByIdAndUpdate(req.params.id, { $push: {reactions: req.body} })
         .then((dbThoughtData) => res.json(dbThoughtData))
