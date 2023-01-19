@@ -1,8 +1,5 @@
 const express = require('express');
 const routes = require('./routes');
-const { Reaction } = require('./Models');
-const { Thought } = require('./Models');
-const { User } = require('./Models');
 
 const port = process.env.PORT || 3001
 const app = express();

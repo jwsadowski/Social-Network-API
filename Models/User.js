@@ -11,31 +11,26 @@ const userSchema = new mongoose.Schema({
         type: String, 
         required: true, 
         unique: true,
+        match: [/.+@.+\..+/, 'Must match an email address!']
     },
-    thoughts: { 
-        type: [ _id ],
-        ref: 'Thought'
-    },
-    friends: {
-        type: [ _id ],
-        ref: 'User'
-    }
+    thoughts: [
+        {type: mongoose.Schema.Types.ObjectId,
+        ref: 'Thought'}
+    ],
+    friends: [
+        {type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'}
+    ]
 }, {
    toJSON: {
     virtuals: true,
    } 
 });
 
-userSchema.path('email').validate(value => match: [/.+@.+\..+/, 'Must match an email address!'])
-
-userSchema.virtuals('friendcount')
+userSchema.virtual('friendcount')
     .get(function() {
-        return `${this.[friends.length]}`
-    })
-    .set(function(value) {
-        const [friends.length] = value.split(' ')
-        this.set([ friends.length ])
-    })
+        return this.friends.length
+    })  
 
 const User = mongoose.model('User', userSchema)
 

@@ -23,13 +23,9 @@ const ReactionSchema = new mongoose.Schema({
     }
 })
 
-ReactionSchema.virtuals('reactioncontent')
+ReactionSchema.virtual('reactioncontent')
     .get(function() {
         return `${this.reactionId} ${this.reactionBody}`
-    })
-    .set(function(value) {
-        const [reactionId, reactionBody] = value.split(' ')
-        this.set({ reactionId, reactionBody })
-    })   
+    })  
 
 module.exports = { ReactionSchema };   
