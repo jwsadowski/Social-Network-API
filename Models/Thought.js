@@ -1,6 +1,4 @@
-const { ObjectId } = require('bson');
 const mongoose = require('mongoose');
-const { monitorEventLoopDelay } = require('perf_hooks');
 const ReactionSchema = require('./Reaction.js')
 
 const thoughtSchema = new mongoose.Schema({

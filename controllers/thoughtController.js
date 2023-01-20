@@ -1,10 +1,16 @@
 const Thought = require('../Models/Thought');
 const userController = require('./userController');
 
+console.log(Thought)
+
 module.exports = {
     getThoughts(req, res) {
+        console.log('route hit')
         Thought.find()
-        .then((thoughts) => res.json(thoughts))
+        .then((thoughts) => {
+            console.log('thoughts', thoughts)
+            res.json(thoughts) 
+        })
         .catch((err) => res.status(500).json(err));
     },
     getSingleThought(req, res) {
@@ -23,13 +29,9 @@ module.exports = {
         (err));
     },
     updateThought(req, res) {
-        Thought.findOneByIdAndUpdate({ _id: req.params.thoughtId})
-        .then((thought) => 
-        !thought
-            ? res.status(404).json({ message: "No thought found with that ID"})
-            : res.json(thought)
-            )
-            .catch((err) => res.status(500).json(err))
+        Thought.findOneAndUpdate({ _id: req.params.thoughtId})
+        .then((thought) => res.json(thought))
+        .catch((err) => res.status(500).json(err));
     },
     createReaction(req, res) {
         Thought.findByIdAndUpdate(req.params.id, { $push: {reactions: req.body} })

@@ -7,7 +7,7 @@ router.get('/thought/:thoughtid', thoughtController.getSingleThought);
 
 router.post('/thought/:thoughtid', thoughtController.createThought);
 
-router.post('/thought/:thoughtid/reactions', thoughtController.createThought);
+router.post('/thought/:thoughtid/reactions', thoughtController.createReaction);
 
 router.put('/thought/:thoughtid', thoughtController.updateThought);
 
