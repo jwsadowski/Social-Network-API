@@ -29,8 +29,17 @@ module.exports = {
         (err));
     },
     updateThought(req, res) {
-        Thought.findOneAndUpdate({ _id: req.params.thoughtId})
-        .then((thought) => res.json(thought))
+        console.log(req.body)
+        console.log(req.params)
+        Thought.findOneAndUpdate(
+            { _id: req.params.thoughtid},
+            { $set: req.body },
+            { runValidators: true, new: true })
+        
+        .then((thought) => { 
+            console.log(thought)
+            res.json(thought)
+            })
         .catch((err) => res.status(500).json(err));
     },
     createReaction(req, res) {

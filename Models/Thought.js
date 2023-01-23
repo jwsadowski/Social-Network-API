@@ -14,11 +14,17 @@ const thoughtSchema = new mongoose.Schema({
         type: String, 
         required: true
     },
+    // thoughtId: {
+    //     type: Integer,
+    //     required: true
+
+    // },
     reactions: [ReactionSchema]
 }, {
     toJSON: {
-        virtuals: true,
-    }
+        getters: true
+    },
+    id: false
 });
 
 thoughtSchema.virtual('reactioncount')

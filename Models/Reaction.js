@@ -20,8 +20,9 @@ const ReactionSchema = new mongoose.Schema({
 }, {
     toJSON: {
         virtuals: true,
-    }
-})
+    },
+    id: false
+});
 
 ReactionSchema.virtual('reactioncontent')
     .get(function() {

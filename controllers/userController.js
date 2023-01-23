@@ -21,13 +21,15 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
     updateUser(req, res) {
-        User.findOneAndUpdate({ _id: req.params.userId})
-        .then((user) => res.json(user))
+        console.log(req.body)
+        User.findOneAndUpdate(req.body)
+        .then((dbUserData) => res.json(dbUserData))
         .catch((err) => res.status(500).json(err));
     },
     deleteUser(req, res) {
-        User.destroy({ _id: req.params.userId})
-        .then((user) => res.json(user))
+        console.log(req.body)
+        User.findOneAndDelete(req.body)
+        .then((dbUserData) => res.json(dbUserData))
         .catch((err) => res.status(500).json(err));
     }
 };
